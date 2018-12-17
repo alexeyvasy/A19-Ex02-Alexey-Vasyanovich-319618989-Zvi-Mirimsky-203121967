@@ -1,0 +1,9 @@
+==========================Exercise Checking Report==========================
+Exercise No...........: Ex1
+First Student Details.: 319618989 - Alexey Vasyanovich
+Second Student Details: 203121967 - Zvi Mirimsky
+Delivery Date.........: 27-November-2018
+Delivered In Delay....: No
+Delay Reason..........: 
+Comments..............: facebook dll files referenced to C:\Temp
+=======================End Exercise Checking Report=========================
