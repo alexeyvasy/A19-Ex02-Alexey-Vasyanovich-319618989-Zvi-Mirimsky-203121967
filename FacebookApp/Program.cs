@@ -5,10 +5,6 @@ using System.Windows.Forms;
 
 namespace FacebookApp
 {
-    // hii
-    //yooo
-
-    // fjgdkfldhsjafjds
     static class Program
     {
         /// <summary>
