@@ -28,12 +28,12 @@ namespace FacebookApp
             this.Size = m_AppSettings.m_LastWindowSize;
             this.Location = m_AppSettings.m_LastWindowLocation;
 
-            if (m_AppSettings.m_RememberUser && !string.IsNullOrEmpty(m_AppSettings.m_LastAccessToken))
-            {
-                m_LoginResult = FacebookService.Connect(m_AppSettings.m_LastAccessToken);
+            //if (m_AppSettings.m_RememberUser && !string.IsNullOrEmpty(m_AppSettings.m_LastAccessToken))
+            //{
+            //    m_LoginResult = FacebookService.Connect(m_AppSettings.m_LastAccessToken);
 
-                loadUser();
-            }
+            //    loadUser();
+            //}
         }
 
         private void fetchUserInfo()
