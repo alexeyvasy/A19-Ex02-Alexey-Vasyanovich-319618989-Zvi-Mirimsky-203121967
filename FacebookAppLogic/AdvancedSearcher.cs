@@ -170,12 +170,9 @@ namespace FacebookAppLogic
 
         private void searchGroups()
         {
-            foreach (Group group in LoggedInUser.Groups)
-            {
-                if (SearchParameters.ChosenGroups.Contains(group.Name))
-                {                    
-                    searchPosts(group.WallPosts);
-                }
+            foreach (Group group in SearchParameters.ChosenGroups)
+            {               
+                searchPosts(group.WallPosts);
             }
         }
 

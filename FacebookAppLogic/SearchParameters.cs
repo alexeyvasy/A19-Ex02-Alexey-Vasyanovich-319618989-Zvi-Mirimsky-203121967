@@ -14,7 +14,7 @@ namespace FacebookAppLogic
 
         public bool GroupSearch { get; private set; }
 
-        public List<string> ChosenGroups { get; private set; }
+        public List<Group> ChosenGroups { get; private set; }
 
         public eGender ChosenGender { get; private set; }
 
@@ -27,7 +27,7 @@ namespace FacebookAppLogic
         public SearchParameters(
                                 bool i_FemaleChecked, 
                                 bool i_MaleChecked, 
-                                List<string> i_CheckedUserGroups, 
+                                List<Group> i_CheckedUserGroups, 
                                 int i_StartAge,
                                 int i_EndAge,
                                 string i_KeyPhrase,

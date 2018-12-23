@@ -15,7 +15,7 @@ namespace FacebookApp
     {
         private User m_LoggedInUser;
         private AdvancedSearcher m_NewSearch;
-        private List<string> m_CheckedGroups;
+        private List<Group> m_CheckedGroups;
         private ListBox m_ListBoxSearchResults;
         private PictureBox m_PictureBoxPostPicture;
         private TextBox m_TextBoxPostMassage;
@@ -107,7 +107,7 @@ userAge);
         public FormAdvancedSearcher(User i_LoggedInUser)
         {
             m_LoggedInUser = i_LoggedInUser;
-            m_CheckedGroups = new List<string>();
+            m_CheckedGroups = new List<Group>();
             m_ListBoxSearchResults = new ListBox();
             m_PictureBoxPostPicture = new PictureBox();
             m_TextBoxPostMassage = new TextBox();
@@ -119,6 +119,11 @@ userAge);
 
         private void buttonSeearch_Click(object sender, EventArgs e)
         {
+            foreach (Group group in checkedListBoxUserGroups.Items)
+            {
+                m_CheckedGroups.Add(group);
+            }
+
             SearchParameters searchParameters = new SearchParameters(
                                                                         checkBoxFemale.Checked,
                                                                         checkBoxMale.Checked,
@@ -151,16 +156,18 @@ userAge);
                 {
                     foreach (Group group in m_LoggedInUser.Groups)
                     {
-                        m_CheckedGroups.Add(group.Name);
-                        checkedListBoxUserGroups.Items.Add(group.Name);
+                        checkedListBoxUserGroups.Items.Add(group);
                     }
 
                     checkedListBoxUserGroups.Visible = true;
                 }
-                catch
+                catch (Exception ex)
                 {
                     checkBoxGroups.Checked = false;
-                    MessageBox.Show("not active due to Graph API Groups restrictions"); // catching GRAPH API restrictions
+                    MessageBox.Show(string.Format(
+@"not active due to Graph API Groups restrictions
+
+{0}", ex)); // catching GRAPH API restrictions
                 }
             }
             else
