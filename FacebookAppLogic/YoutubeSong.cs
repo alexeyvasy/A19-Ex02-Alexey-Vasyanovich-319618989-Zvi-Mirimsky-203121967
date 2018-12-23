@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FacebookAppLogic
 {
-    public class YoutubeSong : URLSong
+    internal class YoutubeSong : URLSong
     {
         public YoutubeSong(string i_URL) : base(i_URL)
         {

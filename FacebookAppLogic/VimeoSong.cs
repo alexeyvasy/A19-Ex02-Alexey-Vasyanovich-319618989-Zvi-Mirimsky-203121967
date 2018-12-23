@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FacebookAppLogic
 {
-    class VimeoSong : URLSong
+    internal class VimeoSong : URLSong
     {
         public VimeoSong(string i_URL) : base(i_URL)
         {

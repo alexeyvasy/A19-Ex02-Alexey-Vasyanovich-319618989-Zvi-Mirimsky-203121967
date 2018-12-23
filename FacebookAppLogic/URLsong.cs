@@ -12,7 +12,7 @@ namespace FacebookAppLogic
         protected string m_VideoURL;
         protected string m_AudioURL;
 
-        public URLSong(string i_URL)
+        internal URLSong(string i_URL)
         {
             m_AudioURL = parseToAudio(i_URL);
             m_VideoURL = parseToVideo(i_URL);

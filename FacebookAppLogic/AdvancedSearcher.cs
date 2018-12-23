@@ -54,7 +54,7 @@ namespace FacebookAppLogic
         {
             if (SearchParameters.GroupSearch)
             {
-                SearchGroups();
+                searchGroups();
             }
 
             if (SearchParameters.FriendSearch)
@@ -64,7 +64,7 @@ namespace FacebookAppLogic
 
             if (SearchParameters.EventSearch)
             {
-                SearchEvents();
+                searchEvents();
             }
         }
 
@@ -168,7 +168,7 @@ namespace FacebookAppLogic
             }
         }
 
-        private void SearchGroups()
+        private void searchGroups()
         {
             foreach (Group group in LoggedInUser.Groups)
             {
@@ -179,7 +179,7 @@ namespace FacebookAppLogic
             }
         }
 
-        private void SearchEvents()
+        private void searchEvents()
         {
             try
             {

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FacebookAppLogic
 {
-    public class SoundCloudSong : URLSong
+    internal class SoundCloudSong : URLSong
     {
         public SoundCloudSong(string i_URL) : base(i_URL)
         {

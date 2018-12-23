@@ -29,7 +29,7 @@ namespace FacebookPlayer
             bool isVideoMode;
 
             m_CurrentSong = i_newSong;
-            isVideoMode = m_CurrentSong.Mode == eSongMode.Video;
+            isVideoMode = m_CurrentSong.CurrentMode == eSongMode.Video;
             showVideoMode(isVideoMode);
             showMinimalSongInfo();
             showSongAddOnsInfo();
@@ -37,7 +37,7 @@ namespace FacebookPlayer
 
         private void showMinimalSongInfo()
         {
-            songNameLabel.Text = m_CurrentSong.Name;
+            songNameLabel.Text = m_CurrentSong.SongName;
             mediaPlayer.Url = new Uri(m_CurrentSong.URL);
         }
 
@@ -87,14 +87,14 @@ namespace FacebookPlayer
         private void switchToAudioButton_Click(object sender, EventArgs e)
         {
             showVideoMode(false);
-            m_CurrentSong.Mode = eSongMode.Audio;
+            m_CurrentSong.CurrentMode = eSongMode.Audio;
             mediaPlayer.Url = new Uri(m_CurrentSong.URL);
         }
 
         private void switchToVideoButton_Click(object sender, EventArgs e)
         {
             showVideoMode(true);
-            m_CurrentSong.Mode = eSongMode.Video;
+            m_CurrentSong.CurrentMode = eSongMode.Video;
             mediaPlayer.Url = new Uri(m_CurrentSong.URL);
         }
 

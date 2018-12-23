@@ -9,37 +9,17 @@ namespace FacebookAppLogic
 {
     public class PlayListSong
     {
-        protected string m_SongName;
+        public string SongName { get; }
         private URLSong m_SongURL;
-        private eSongMode m_CurrentMode;
+        public eSongMode CurrentMode { get; set; }
 
         public PlayListSong(string i_SongName, URLSong i_SongURL, eSongMode i_Songmode)
         {
             m_SongURL = i_SongURL;
-            m_SongName = i_SongName;
-            m_CurrentMode = i_Songmode;
+            SongName = i_SongName;
+            CurrentMode = i_Songmode;
         }
 
-        public string Name
-        {
-            get
-            {
-                return m_SongName;
-            }
-        }
-
-        public eSongMode Mode
-        {
-            get
-            {
-                return m_CurrentMode;
-            }
-
-            set
-            {
-                m_CurrentMode = value;
-            }
-        }
 
         public string URL
         {
@@ -47,7 +27,7 @@ namespace FacebookAppLogic
             {
                 string url;
 
-                if (m_CurrentMode == eSongMode.Audio)
+                if (CurrentMode == eSongMode.Audio)
                 {
                     url = m_SongURL.AudioURL;
                 }
