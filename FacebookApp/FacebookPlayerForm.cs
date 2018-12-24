@@ -15,13 +15,13 @@ namespace FacebookPlayer
 {
     public partial class FacebookPlayerForm : Form
     {
-        private List<PlayListSong> m_Songs;
+        private List<FacebookSharedSong> m_Songs;
 
         public FacebookPlayerForm()
         {
             InitializeComponent();
             FacebookService.s_CollectionLimit = 300;
-            m_Songs = new List<PlayListSong>();
+            m_Songs = new List<FacebookSharedSong>();
             allSongsListBox.DisplayMember = "Name";
             playListBox.DisplayMember = "Name";
         }
@@ -39,11 +39,11 @@ namespace FacebookPlayer
             {
                 if (link.URL != null)
                 {
-                    m_Songs.Add(new FacebookSharedSong(URLSongFactory.CreateURLSong(link.URL), link, eSongMode.Video));
+                    m_Songs.Add(new FacebookSharedSong(link, eSongMode.Video));
                 }
             }       
 
-            foreach (PlayListSong song in m_Songs)
+            foreach (FacebookSharedSong song in m_Songs)
             {
                 allSongsListBox.Invoke(new Action(() => allSongsListBox.Items.Add(song)));
             }
@@ -51,7 +51,7 @@ namespace FacebookPlayer
 
         private void addToPlayListButton_Click(object sender, EventArgs e)
         {
-            PlayListSong song = allSongsListBox.SelectedItem as PlayListSong; 
+            FacebookSharedSong song = allSongsListBox.SelectedItem as FacebookSharedSong; 
 
             if (song != null)
             {
@@ -63,7 +63,7 @@ namespace FacebookPlayer
             }
         }
 
-        private void addSongToPlayList(PlayListSong song)
+        private void addSongToPlayList(FacebookSharedSong song)
         {
             if (!playListBox.Items.Contains(song))
             {
@@ -91,7 +91,7 @@ namespace FacebookPlayer
 
         private void playSelectedSong()
         {
-            PlayListSong song = playListBox.SelectedItem as PlayListSong;
+            FacebookSharedSong song = playListBox.SelectedItem as FacebookSharedSong;
             if (song != null)
             {
                 SongsPlayer.Play(song);
@@ -112,7 +112,7 @@ namespace FacebookPlayer
             if (playListBox.SelectedItem != null)
             {
                 SongsPlayer.Visible = true;
-                SongsPlayer.Play(playListBox.SelectedItem as PlayListSong);
+                SongsPlayer.Play(playListBox.SelectedItem as FacebookSharedSong);
             }
         }
 

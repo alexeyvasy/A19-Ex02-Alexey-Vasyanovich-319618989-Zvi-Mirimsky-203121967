@@ -12,7 +12,7 @@ namespace FacebookPlayer
 {
     public partial class SongPlayerController : UserControl
     {
-        private PlayListSong m_CurrentSong;
+        private FacebookSharedSong m_CurrentSong;
 
         public SongPlayerController()
         {
@@ -24,7 +24,7 @@ namespace FacebookPlayer
             mediaPlayer.Url = new Uri("https://www.google.co.il/");
         }
 
-        public void Play(PlayListSong i_newSong)
+        public void Play(FacebookSharedSong i_newSong)
         {
             bool isVideoMode;
 

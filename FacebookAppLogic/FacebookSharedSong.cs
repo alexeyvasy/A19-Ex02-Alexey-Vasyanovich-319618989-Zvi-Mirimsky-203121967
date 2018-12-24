@@ -7,13 +7,37 @@ using FacebookWrapper;
 
 namespace FacebookAppLogic
 {
-    public class FacebookSharedSong : PlayListSong
+    public class FacebookSharedSong 
     {
         private Link m_FacebookSongLink;
+        public string SongName { get; }
+        private URLSong m_SongURL;
+        public eSongMode CurrentMode { get; set; }
 
-        public FacebookSharedSong(URLSong i_SongURL, Link i_FacebookSongLink, eSongMode i_SongMode) : base(i_FacebookSongLink.Name, i_SongURL, i_SongMode)
+        public string URL
         {
+            get
+            {
+                string url;
+
+                if (CurrentMode == eSongMode.Audio)
+                {
+                    url = m_SongURL.AudioURL;
+                }
+                else
+                {
+                    url = m_SongURL.VideoURL;
+                }
+
+                return url;
+            }
+        }
+        public FacebookSharedSong(Link i_FacebookSongLink, eSongMode i_SongMode)
+        {
+            CurrentMode = i_SongMode;
             m_FacebookSongLink = i_FacebookSongLink;
+            m_SongURL = URLSongFactory.CreateURLSong(i_FacebookSongLink.URL);
+            SongName = i_FacebookSongLink.Name;
         }
 
         public DateTime? UploadedDate
