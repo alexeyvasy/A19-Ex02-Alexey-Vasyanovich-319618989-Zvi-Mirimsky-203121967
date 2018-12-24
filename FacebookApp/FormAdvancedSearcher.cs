@@ -55,53 +55,32 @@ namespace FacebookApp
 
         private void ListBoxSearchResults_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Post selectedPost = ((sender as ListBox).SelectedItem as PostWrapper).m_Post;
+            PostWrapper selectedPost = ((sender as ListBox).SelectedItem as PostWrapper);
             string userName = "unknown"; 
             string userAge = "unknown"; 
 
             m_TextBoxPostMassage.Clear();
             m_PictureBoxPostPicture.Image = null;
-            
+
+            if (selectedPost.Post.PictureURL != null)
+            {
+                m_PictureBoxPostPicture.LoadAsync(selectedPost.Post.PictureURL);
+            }
+
+            if (selectedPost.Post.From != null)
+            {
+                m_PictureBoxPostPicture.LoadAsync(selectedPost.Post.From.PictureNormalURL);
+                userAge = AdvancedSearcher.UserAge(selectedPost.Post.From).ToString();
+                userName = selectedPost.Post.From.Name;
+            }
+
             m_LabelPostOwnerInfo.Text = string.Format(
 @"Post Owner Name: {0}
-Post Owner Age: {1}", 
-userName, 
+Post Owner Age: {1}",
+userName,
 userAge);
 
-            if (selectedPost.PictureURL != null)
-            {
-                m_PictureBoxPostPicture.LoadAsync(selectedPost.PictureURL);
-            }
-            else if (selectedPost.From != null)
-            {
-                m_PictureBoxPostPicture.LoadAsync(selectedPost.From.PictureNormalURL);
-                userAge = AdvancedSearcher.UserAge(selectedPost.From).ToString();
-                userName = selectedPost.From.Name;
-            }
-
-            if (selectedPost.Name != null)
-            {
-                m_TextBoxPostMassage.AppendText(selectedPost.Name);
-                m_TextBoxPostMassage.AppendText(Environment.NewLine);
-            }
-
-            if (selectedPost.Message != null)
-            {
-                m_TextBoxPostMassage.AppendText(selectedPost.Message);
-                m_TextBoxPostMassage.AppendText(Environment.NewLine);
-            }
-
-            if (selectedPost.Link != null)
-            {
-                m_TextBoxPostMassage.AppendText(selectedPost.Link);
-                m_TextBoxPostMassage.AppendText(Environment.NewLine);
-            }
-
-            if (selectedPost.Description != null)
-            {
-                m_TextBoxPostMassage.AppendText(selectedPost.Description);
-                m_TextBoxPostMassage.AppendText(Environment.NewLine);
-            }            
+            m_TextBoxPostMassage.Text = selectedPost.createTextForPost();
         }
 
         public FormAdvancedSearcher(User i_LoggedInUser)

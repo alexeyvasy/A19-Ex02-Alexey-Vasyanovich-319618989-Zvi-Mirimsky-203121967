@@ -8,30 +8,60 @@ namespace FacebookAppLogic
 {
     public class PostWrapper
     {
-        public Post m_Post { get; }
+        public Post Post { get; }
 
         public PostWrapper(Post i_Post)
         {
-            m_Post = i_Post;
+            Post = i_Post;
+            
         }
 
-        
+        public string createTextForPost()
+        {
+            StringBuilder PostText = new StringBuilder();
+
+            if (Post.Name != null)
+            {
+                PostText.Append(Post.Name);
+                PostText.Append(Environment.NewLine);
+            }
+
+            if (Post.Message != null)
+            {
+                PostText.Append(Post.Message);
+                PostText.Append(Environment.NewLine);
+            }
+
+            if (Post.Link != null)
+            {
+                PostText.Append(Post.Link);
+                PostText.Append(Environment.NewLine);
+            }
+
+            if (Post.Description != null)
+            {
+                PostText.Append(Post.Description);
+                PostText.Append(Environment.NewLine);
+            }
+
+            return PostText.ToString();
+        }
 
         public override string ToString()
         {
             string result = string.Empty;
 
-            if (m_Post.Message != null)
+            if (Post.Message != null)
             {
-                result = m_Post.Message;
+                result = Post.Message;
             }
-            else if (m_Post.Name != null)
+            else if (Post.Name != null)
             {
-                result = m_Post.Name;
+                result = Post.Name;
             }
-            else if (m_Post.Link != null)
+            else if (Post.Link != null)
             {
-                result = m_Post.Link;
+                result = Post.Link;
             }
 
             return result;
