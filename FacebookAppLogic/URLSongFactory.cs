@@ -25,7 +25,28 @@ namespace FacebookAppLogic
             }
 
             return urlSong;
-        
+        }
+
+        public static bool IsLinkSupported(string i_URL)
+        {
+            bool isLinkSupported = false;
+            if (i_URL != null)
+            {
+                if (i_URL.Contains("youtube"))
+                {
+                    isLinkSupported = true;
+                }
+                else if (i_URL.Contains("soundcloud"))
+                {
+                    isLinkSupported = true;
+                }
+                else if (i_URL.Contains("vimeo"))
+                {
+                    isLinkSupported = true;
+                }
+            }
+
+            return isLinkSupported;
         }
     }
 }

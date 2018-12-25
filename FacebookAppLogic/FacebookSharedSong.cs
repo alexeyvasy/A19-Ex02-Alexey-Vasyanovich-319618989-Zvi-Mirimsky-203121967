@@ -32,6 +32,7 @@ namespace FacebookAppLogic
                 return url;
             }
         }
+
         public FacebookSharedSong(Link i_FacebookSongLink, eSongMode i_SongMode)
         {
             CurrentMode = i_SongMode;

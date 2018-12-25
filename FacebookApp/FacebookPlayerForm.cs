@@ -22,8 +22,8 @@ namespace FacebookPlayer
             InitializeComponent();
             FacebookService.s_CollectionLimit = 300;
             m_Songs = new List<FacebookSharedSong>();
-            allSongsListBox.DisplayMember = "Name";
-            playListBox.DisplayMember = "Name";
+            allSongsListBox.DisplayMember = "SongName";
+            playListBox.DisplayMember = "SongName";
         }
 
         public void LoadSongs(User i_LoggedInUser)
@@ -37,7 +37,7 @@ namespace FacebookPlayer
 
             foreach (Link link in links)
             {
-                if (link.URL != null)
+                if (URLSongFactory.IsLinkSupported(link.URL) == true) //check if the link is supported
                 {
                     m_Songs.Add(new FacebookSharedSong(link, eSongMode.Video));
                 }
