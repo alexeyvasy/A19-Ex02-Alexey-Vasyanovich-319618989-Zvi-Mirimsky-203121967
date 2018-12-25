@@ -15,13 +15,10 @@ namespace FacebookPlayer
 {
     public partial class FacebookPlayerForm : Form
     {
-        private List<FacebookSharedSong> m_Songs;
-
         public FacebookPlayerForm()
         {
             InitializeComponent();
-            FacebookService.s_CollectionLimit = 300;
-            m_Songs = new List<FacebookSharedSong>();
+            
             allSongsListBox.DisplayMember = "SongName";
             playListBox.DisplayMember = "SongName";
         }
@@ -33,19 +30,23 @@ namespace FacebookPlayer
 
         private void loadSongs(User i_LoggedInUser)
         {
-            FacebookObjectCollection<Link> links = i_LoggedInUser.PostedLinks;
+            List<FacebookSharedSong> songList = null;
 
-            foreach (Link link in links)
+            try
             {
-                if (URLSongFactory.IsLinkSupported(link.URL) == true) //check if the link is supported
+                songList = FacebookPlayerFacade.getFacebookSharedSongCollection(i_LoggedInUser);
+            }
+            catch(Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
+
+            if (songList != null)
+            {
+                foreach (FacebookSharedSong song in songList)
                 {
-                    m_Songs.Add(new FacebookSharedSong(link, eSongMode.Video));
+                    allSongsListBox.Invoke(new Action(() => allSongsListBox.Items.Add(song)));
                 }
-            }       
-
-            foreach (FacebookSharedSong song in m_Songs)
-            {
-                allSongsListBox.Invoke(new Action(() => allSongsListBox.Items.Add(song)));
             }
         }
 
@@ -138,7 +139,7 @@ namespace FacebookPlayer
         {
             base.OnClosing(e);
 
-            FacebookService.s_CollectionLimit = 25;
+            FacebookPlayerFacade.Close();
         }
     }
 }
