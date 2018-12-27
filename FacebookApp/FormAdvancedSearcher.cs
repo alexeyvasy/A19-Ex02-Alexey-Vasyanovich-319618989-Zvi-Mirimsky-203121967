@@ -80,7 +80,7 @@ Post Owner Age: {1}",
 userName,
 userAge);
 
-            m_TextBoxPostMassage.Text = selectedPost.createTextForPost();
+            m_TextBoxPostMassage.Text = selectedPost.CreateTextForPost();
         }
 
         public FormAdvancedSearcher(User i_LoggedInUser)

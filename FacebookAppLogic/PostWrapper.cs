@@ -13,10 +13,9 @@ namespace FacebookAppLogic
         public PostWrapper(Post i_Post)
         {
             Post = i_Post;
-            
         }
 
-        public string createTextForPost()
+        public string CreateTextForPost()
         {
             StringBuilder PostText = new StringBuilder();
 
