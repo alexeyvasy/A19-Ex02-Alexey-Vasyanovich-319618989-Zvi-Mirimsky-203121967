@@ -45,7 +45,6 @@ namespace FacebookApp
             usernameLabel.Font = new Font("Arial", 16);
             showAllControls(true);
 
-
             postBindingSource.DataSource = m_LoggedInUser.Posts;
             userBindingSource.DataSource = m_LoggedInUser.Friends;
         }

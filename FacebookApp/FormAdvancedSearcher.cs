@@ -55,7 +55,7 @@ namespace FacebookApp
 
         private void ListBoxSearchResults_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PostWrapper selectedPost = ((sender as ListBox).SelectedItem as PostWrapper);
+            PostWrapper selectedPost = (sender as ListBox).SelectedItem as PostWrapper;
             string userName = "unknown"; 
             string userAge = "unknown"; 
 
@@ -146,7 +146,8 @@ userAge);
                     MessageBox.Show(string.Format(
 @"not active due to Graph API Groups restrictions
 
-{0}", ex)); // catching GRAPH API restrictions
+{0}",
+ex)); // catching GRAPH API restrictions
                 }
             }
             else

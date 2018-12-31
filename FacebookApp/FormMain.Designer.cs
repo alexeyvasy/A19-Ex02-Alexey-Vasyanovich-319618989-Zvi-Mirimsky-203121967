@@ -172,7 +172,7 @@ namespace FacebookApp
             this.textBoxStatus.Name = "textBoxStatus";
             this.textBoxStatus.Size = new System.Drawing.Size(176, 70);
             this.textBoxStatus.TabIndex = 14;
-            this.textBoxStatus.Text = "";
+            this.textBoxStatus.Text = string.Empty;
             this.textBoxStatus.Visible = false;
             // 
             // buttonFacebookPlayer

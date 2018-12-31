@@ -34,7 +34,7 @@ namespace FacebookPlayer
 
             try
             {
-                songList = FacebookPlayerFacade.getFacebookSharedSongCollection(i_LoggedInUser);
+                songList = FacebookPlayerFacade.GetFacebookSharedSongCollection(i_LoggedInUser);
             }
             catch(Exception exp)
             {

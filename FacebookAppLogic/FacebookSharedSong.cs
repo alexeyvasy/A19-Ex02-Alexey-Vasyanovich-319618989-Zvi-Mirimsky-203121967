@@ -10,8 +10,10 @@ namespace FacebookAppLogic
     public class FacebookSharedSong 
     {
         private Link m_FacebookSongLink;
-        public string SongName { get; }
         private URLSong m_SongURL;
+
+        public string SongName { get; }
+
         public eSongMode CurrentMode { get; set; }
 
         public string URL
