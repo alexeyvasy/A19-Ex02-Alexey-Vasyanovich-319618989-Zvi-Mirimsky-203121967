@@ -1,4 +1,4 @@
-﻿namespace FacebookPlayer
+﻿namespace FacebookApp
 {
     partial class FacebookPlayerForm
     {
@@ -35,7 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.addToPlayListButton = new System.Windows.Forms.Button();
             this.EraseButton = new System.Windows.Forms.Button();
-            this.SongsPlayer = new FacebookPlayer.SongPlayerController();
+            this.SongsPlayer = new SongPlayerController();
             this.SuspendLayout();
             // 
             // allSongsListBox

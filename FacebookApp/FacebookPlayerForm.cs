@@ -11,14 +11,15 @@ using FacebookAppLogic;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
 
-namespace FacebookPlayer
+namespace FacebookApp
 {
     public partial class FacebookPlayerForm : Form
     {
         public FacebookPlayerForm()
         {
             InitializeComponent();
-            
+
+            FormMain.BackgroundChanged += (Color i_Color) => BackColor = i_Color;
             allSongsListBox.DisplayMember = "SongName";
             playListBox.DisplayMember = "SongName";
         }

@@ -15,6 +15,8 @@ namespace FacebookAppLogic
 
     public class AdvancedSearcher
     {
+        public Func<string, string, bool> keyPhraseSearcher;
+
         public static int UserAge(User i_User)
         {
             int age = 0;
@@ -129,7 +131,7 @@ namespace FacebookAppLogic
                 {
                     if (post.Message != null)
                     {
-                        if (post.Message.Contains(SearchParameters.KeyPhrase))
+                        if (keyPhraseSearcher.Invoke(post.Message, SearchParameters.KeyPhrase))         //  post.Message.Contains(SearchParameters.KeyPhrase)
                         {
                             SearchResults.Add(myPost);
                             postBeenAdded = true;
@@ -138,7 +140,7 @@ namespace FacebookAppLogic
 
                     if (post.Name != null)
                     {
-                        if (post.Name.Contains(SearchParameters.KeyPhrase) && !postBeenAdded)
+                        if (keyPhraseSearcher.Invoke(post.Name, SearchParameters.KeyPhrase) && !postBeenAdded)
                         {
                             SearchResults.Add(myPost);
                             postBeenAdded = true;
@@ -147,7 +149,7 @@ namespace FacebookAppLogic
 
                     if (post.Description != null)
                     {
-                        if (post.Description.Contains(SearchParameters.KeyPhrase) && !postBeenAdded)
+                        if (keyPhraseSearcher.Invoke(post.Description, SearchParameters.KeyPhrase) && !postBeenAdded)
                         {
                             SearchResults.Add(myPost);
                             postBeenAdded = true;

@@ -91,7 +91,8 @@ userAge);
             m_PictureBoxPostPicture = new PictureBox();
             m_TextBoxPostMassage = new TextBox();
             m_LabelPostOwnerInfo = new Label();
-            this.AutoSize = true; 
+            this.AutoSize = true;
+            FormMain.BackgroundChanged += (Color i_Color) => BackColor = i_Color;
 
             InitializeComponent();
         }
@@ -118,6 +119,7 @@ userAge);
 
             try
             {
+                m_NewSearch.keyPhraseSearcher = keyPhraseSearchNormalStrategy;
                 m_NewSearch.Search();
                 showSearchResults();
             }
@@ -125,6 +127,11 @@ userAge);
             {
                 MessageBox.Show("API restrictions: \n" + ex.Message);
             }             
+        }
+
+        private bool keyPhraseSearchNormalStrategy(string i_PostText, string i_KeyPhrase)
+        {
+            return i_PostText.Contains(i_KeyPhrase); 
         }
 
         private void checkBoxGroups_CheckedChanged(object sender, EventArgs e)

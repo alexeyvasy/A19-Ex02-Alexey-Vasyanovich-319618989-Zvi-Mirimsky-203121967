@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using FacebookApp;
 using FacebookAppLogic;
-using FacebookPlayer;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
 
@@ -20,6 +19,7 @@ namespace FacebookApp
         private LoginResult m_LoginResult;
         private AppSettings m_AppSettings;
         private Action m_LogOut = null;     // required for Facebook Logout method
+        static public event Action<Color> BackgroundChanged;
 
         public FormMain()
         {
@@ -97,14 +97,17 @@ namespace FacebookApp
 
         private void buttonAdvancedFriendSearch_Click(object sender, EventArgs e)
         {
-            FormAdvancedSearcher newSearch = new FormAdvancedSearcher(m_LoggedInUser);
-            newSearch.Show();
+            FormAdvancedSearcher newSearchForm = new FormAdvancedSearcher(m_LoggedInUser);
+
+            BackgroundChanged.Invoke(BackColor);
+            newSearchForm.Show();
         }
 
         private void buttonFacebookPlayer_Click(object sender, EventArgs e)
         {
             FacebookPlayerForm facebookPlayerForm = new FacebookPlayerForm();
 
+            BackgroundChanged.Invoke(BackColor);
             facebookPlayerForm.Show();
             facebookPlayerForm.LoadSongs(m_LoggedInUser);
         }
@@ -188,6 +191,19 @@ namespace FacebookApp
                         pictureBoxFriend.LoadAsync(selectedFriend.PictureLargeURL);
                     }
                 }
+            }
+        }
+
+        private void buttonBackgroundChange_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+
+            colorDialog.ShowDialog();
+            BackColor = colorDialog.Color;
+
+            if (BackgroundChanged != null)
+            {
+                BackgroundChanged.Invoke(colorDialog.Color);
             }
         }
     }

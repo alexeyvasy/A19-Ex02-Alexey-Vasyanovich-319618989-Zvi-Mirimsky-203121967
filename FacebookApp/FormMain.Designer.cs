@@ -36,11 +36,13 @@ namespace FacebookApp
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.connectButton = new System.Windows.Forms.Button();
             this.listBoxFriends = new System.Windows.Forms.ListBox();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonPostStatus = new System.Windows.Forms.Button();
             this.checkBoxRememberUser = new System.Windows.Forms.CheckBox();
             this.buttonDisconnect = new System.Windows.Forms.Button();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.listBoxPosts = new System.Windows.Forms.ListBox();
+            this.postBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelFriends = new System.Windows.Forms.Label();
             this.labelPosts = new System.Windows.Forms.Label();
             this.textBoxStatus = new System.Windows.Forms.RichTextBox();
@@ -48,19 +50,19 @@ namespace FacebookApp
             this.buttonAdvancedSearch = new System.Windows.Forms.Button();
             this.userProfilePictureBox = new System.Windows.Forms.PictureBox();
             this.pictureBoxFriend = new System.Windows.Forms.PictureBox();
-            this.postBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.buttonBackgroundChange = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userProfilePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // connectButton
             // 
-            this.connectButton.Location = new System.Drawing.Point(31, 25);
+            this.connectButton.Location = new System.Drawing.Point(41, 31);
+            this.connectButton.Margin = new System.Windows.Forms.Padding(4);
             this.connectButton.Name = "connectButton";
-            this.connectButton.Size = new System.Drawing.Size(69, 23);
+            this.connectButton.Size = new System.Drawing.Size(92, 28);
             this.connectButton.TabIndex = 0;
             this.connectButton.Text = "Connect";
             this.connectButton.UseVisualStyleBackColor = true;
@@ -68,22 +70,28 @@ namespace FacebookApp
             // 
             // listBoxFriends
             // 
-            this.listBoxFriends.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.listBoxFriends.DataSource = this.userBindingSource;
             this.listBoxFriends.DisplayMember = "Name";
             this.listBoxFriends.FormattingEnabled = true;
-            this.listBoxFriends.Location = new System.Drawing.Point(31, 222);
+            this.listBoxFriends.ItemHeight = 16;
+            this.listBoxFriends.Location = new System.Drawing.Point(41, 273);
+            this.listBoxFriends.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxFriends.Name = "listBoxFriends";
-            this.listBoxFriends.Size = new System.Drawing.Size(289, 160);
+            this.listBoxFriends.Size = new System.Drawing.Size(384, 196);
             this.listBoxFriends.TabIndex = 2;
             this.listBoxFriends.Visible = false;
             this.listBoxFriends.SelectedIndexChanged += new System.EventHandler(this.listBoxFriends_SelectedIndexChanged);
             // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.User);
+            // 
             // buttonPostStatus
             // 
-            this.buttonPostStatus.Location = new System.Drawing.Point(316, 154);
+            this.buttonPostStatus.Location = new System.Drawing.Point(421, 190);
+            this.buttonPostStatus.Margin = new System.Windows.Forms.Padding(4);
             this.buttonPostStatus.Name = "buttonPostStatus";
-            this.buttonPostStatus.Size = new System.Drawing.Size(67, 23);
+            this.buttonPostStatus.Size = new System.Drawing.Size(89, 28);
             this.buttonPostStatus.TabIndex = 4;
             this.buttonPostStatus.Text = "Post Status";
             this.buttonPostStatus.UseVisualStyleBackColor = true;
@@ -95,9 +103,10 @@ namespace FacebookApp
             this.checkBoxRememberUser.AutoSize = true;
             this.checkBoxRememberUser.Checked = true;
             this.checkBoxRememberUser.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxRememberUser.Location = new System.Drawing.Point(31, 54);
+            this.checkBoxRememberUser.Location = new System.Drawing.Point(41, 66);
+            this.checkBoxRememberUser.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxRememberUser.Name = "checkBoxRememberUser";
-            this.checkBoxRememberUser.Size = new System.Drawing.Size(102, 17);
+            this.checkBoxRememberUser.Size = new System.Drawing.Size(133, 21);
             this.checkBoxRememberUser.TabIndex = 6;
             this.checkBoxRememberUser.Text = "Remember User";
             this.checkBoxRememberUser.UseVisualStyleBackColor = true;
@@ -105,9 +114,10 @@ namespace FacebookApp
             // 
             // buttonDisconnect
             // 
-            this.buttonDisconnect.Location = new System.Drawing.Point(106, 25);
+            this.buttonDisconnect.Location = new System.Drawing.Point(141, 31);
+            this.buttonDisconnect.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDisconnect.Name = "buttonDisconnect";
-            this.buttonDisconnect.Size = new System.Drawing.Size(75, 23);
+            this.buttonDisconnect.Size = new System.Drawing.Size(100, 28);
             this.buttonDisconnect.TabIndex = 8;
             this.buttonDisconnect.Text = "Disconnect";
             this.buttonDisconnect.UseVisualStyleBackColor = true;
@@ -117,76 +127,75 @@ namespace FacebookApp
             // usernameLabel
             // 
             this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Font = new System.Drawing.Font("Monotype Corsiva", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameLabel.Location = new System.Drawing.Point(137, 73);
-            this.usernameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.usernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameLabel.Location = new System.Drawing.Point(183, 90);
             this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(110, 33);
+            this.usernameLabel.Size = new System.Drawing.Size(176, 39);
             this.usernameLabel.TabIndex = 10;
             this.usernameLabel.Text = "username";
             this.usernameLabel.Visible = false;
             // 
             // listBoxPosts
             // 
-            this.listBoxPosts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.listBoxPosts.DataSource = this.postBindingSource;
             this.listBoxPosts.DisplayMember = "Message";
             this.listBoxPosts.FormattingEnabled = true;
-            this.listBoxPosts.Location = new System.Drawing.Point(31, 418);
-            this.listBoxPosts.Margin = new System.Windows.Forms.Padding(2);
+            this.listBoxPosts.ItemHeight = 16;
+            this.listBoxPosts.Location = new System.Drawing.Point(41, 514);
+            this.listBoxPosts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxPosts.Name = "listBoxPosts";
-            this.listBoxPosts.Size = new System.Drawing.Size(289, 160);
+            this.listBoxPosts.Size = new System.Drawing.Size(384, 196);
             this.listBoxPosts.TabIndex = 11;
             this.listBoxPosts.Visible = false;
             // 
+            // postBindingSource
+            // 
+            this.postBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Post);
+            // 
             // labelFriends
             // 
-            this.labelFriends.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelFriends.AutoSize = true;
-            this.labelFriends.Font = new System.Drawing.Font("Monotype Corsiva", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFriends.Location = new System.Drawing.Point(27, 197);
-            this.labelFriends.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelFriends.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFriends.Location = new System.Drawing.Point(36, 242);
             this.labelFriends.Name = "labelFriends";
-            this.labelFriends.Size = new System.Drawing.Size(105, 22);
+            this.labelFriends.Size = new System.Drawing.Size(158, 29);
             this.labelFriends.TabIndex = 12;
             this.labelFriends.Text = "Your Friends:";
             this.labelFriends.Visible = false;
             // 
             // labelPosts
             // 
-            this.labelPosts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelPosts.AutoSize = true;
-            this.labelPosts.Font = new System.Drawing.Font("Monotype Corsiva", 14.25F, System.Drawing.FontStyle.Italic);
-            this.labelPosts.Location = new System.Drawing.Point(27, 394);
-            this.labelPosts.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelPosts.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Italic);
+            this.labelPosts.Location = new System.Drawing.Point(36, 485);
             this.labelPosts.Name = "labelPosts";
-            this.labelPosts.Size = new System.Drawing.Size(89, 22);
+            this.labelPosts.Size = new System.Drawing.Size(136, 29);
             this.labelPosts.TabIndex = 13;
             this.labelPosts.Text = "Your Posts:";
             this.labelPosts.Visible = false;
             // 
             // textBoxStatus
             // 
-            this.textBoxStatus.Location = new System.Drawing.Point(137, 108);
-            this.textBoxStatus.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxStatus.Location = new System.Drawing.Point(183, 133);
+            this.textBoxStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxStatus.Name = "textBoxStatus";
-            this.textBoxStatus.Size = new System.Drawing.Size(176, 70);
+            this.textBoxStatus.Size = new System.Drawing.Size(233, 85);
             this.textBoxStatus.TabIndex = 14;
-            this.textBoxStatus.Text = string.Empty;
+            this.textBoxStatus.Text = "";
             this.textBoxStatus.Visible = false;
             // 
             // buttonFacebookPlayer
             // 
-            this.buttonFacebookPlayer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonFacebookPlayer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonFacebookPlayer.BackgroundImage")));
             this.buttonFacebookPlayer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.buttonFacebookPlayer.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.buttonFacebookPlayer.FlatAppearance.BorderSize = 22;
-            this.buttonFacebookPlayer.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonFacebookPlayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.buttonFacebookPlayer.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonFacebookPlayer.Location = new System.Drawing.Point(407, 25);
+            this.buttonFacebookPlayer.Location = new System.Drawing.Point(543, 31);
+            this.buttonFacebookPlayer.Margin = new System.Windows.Forms.Padding(4);
             this.buttonFacebookPlayer.Name = "buttonFacebookPlayer";
-            this.buttonFacebookPlayer.Size = new System.Drawing.Size(120, 109);
+            this.buttonFacebookPlayer.Size = new System.Drawing.Size(160, 134);
             this.buttonFacebookPlayer.TabIndex = 9;
             this.buttonFacebookPlayer.Text = "Facebook Player";
             this.buttonFacebookPlayer.UseVisualStyleBackColor = true;
@@ -195,14 +204,14 @@ namespace FacebookApp
             // 
             // buttonAdvancedSearch
             // 
-            this.buttonAdvancedSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAdvancedSearch.BackgroundImage = global::FacebookApp.Properties.Resources.search_icon;
             this.buttonAdvancedSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buttonAdvancedSearch.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdvancedSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAdvancedSearch.ForeColor = System.Drawing.Color.Black;
-            this.buttonAdvancedSearch.Location = new System.Drawing.Point(543, 27);
+            this.buttonAdvancedSearch.Location = new System.Drawing.Point(724, 33);
+            this.buttonAdvancedSearch.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAdvancedSearch.Name = "buttonAdvancedSearch";
-            this.buttonAdvancedSearch.Size = new System.Drawing.Size(123, 107);
+            this.buttonAdvancedSearch.Size = new System.Drawing.Size(164, 132);
             this.buttonAdvancedSearch.TabIndex = 7;
             this.buttonAdvancedSearch.Text = "Perform Advanced Search";
             this.buttonAdvancedSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -213,35 +222,41 @@ namespace FacebookApp
             // userProfilePictureBox
             // 
             this.userProfilePictureBox.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.userProfilePictureBox.Location = new System.Drawing.Point(31, 79);
+            this.userProfilePictureBox.Location = new System.Drawing.Point(41, 97);
+            this.userProfilePictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.userProfilePictureBox.Name = "userProfilePictureBox";
-            this.userProfilePictureBox.Size = new System.Drawing.Size(101, 97);
+            this.userProfilePictureBox.Size = new System.Drawing.Size(135, 119);
             this.userProfilePictureBox.TabIndex = 1;
             this.userProfilePictureBox.TabStop = false;
             this.userProfilePictureBox.Visible = false;
             // 
             // pictureBoxFriend
             // 
-            this.pictureBoxFriend.Location = new System.Drawing.Point(352, 207);
+            this.pictureBoxFriend.Location = new System.Drawing.Point(469, 255);
+            this.pictureBoxFriend.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxFriend.Name = "pictureBoxFriend";
-            this.pictureBoxFriend.Size = new System.Drawing.Size(175, 160);
+            this.pictureBoxFriend.Size = new System.Drawing.Size(233, 197);
             this.pictureBoxFriend.TabIndex = 15;
             this.pictureBoxFriend.TabStop = false;
             // 
-            // postBindingSource
+            // buttonBackgroundChange
             // 
-            this.postBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Post);
-            // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.User);
+            this.buttonBackgroundChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonBackgroundChange.Location = new System.Drawing.Point(813, 666);
+            this.buttonBackgroundChange.Name = "buttonBackgroundChange";
+            this.buttonBackgroundChange.Size = new System.Drawing.Size(94, 53);
+            this.buttonBackgroundChange.TabIndex = 16;
+            this.buttonBackgroundChange.Text = "Change Background";
+            this.buttonBackgroundChange.UseVisualStyleBackColor = true;
+            this.buttonBackgroundChange.Click += new System.EventHandler(this.buttonBackgroundChange_Click);
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(689, 594);
+            this.ClientSize = new System.Drawing.Size(919, 731);
+            this.Controls.Add(this.buttonBackgroundChange);
             this.Controls.Add(this.pictureBoxFriend);
             this.Controls.Add(this.textBoxStatus);
             this.Controls.Add(this.labelPosts);
@@ -256,14 +271,15 @@ namespace FacebookApp
             this.Controls.Add(this.listBoxFriends);
             this.Controls.Add(this.userProfilePictureBox);
             this.Controls.Add(this.connectButton);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FormMain";
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userProfilePictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.postBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,5 +303,6 @@ namespace FacebookApp
         private PictureBox pictureBoxFriend;
         private BindingSource postBindingSource;
         private BindingSource userBindingSource;
+        private Button buttonBackgroundChange;
     }
 }

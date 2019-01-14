@@ -1,4 +1,4 @@
-﻿namespace FacebookPlayer
+﻿namespace FacebookApp
 {
     partial class SongPlayerController
     {

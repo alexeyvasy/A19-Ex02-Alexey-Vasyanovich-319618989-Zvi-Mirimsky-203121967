@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using FacebookAppLogic;
 
-namespace FacebookPlayer
+namespace FacebookApp
 {
     public partial class SongPlayerController : UserControl
     {
