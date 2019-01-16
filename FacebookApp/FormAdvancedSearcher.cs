@@ -92,7 +92,7 @@ userAge);
             m_TextBoxPostMassage = new TextBox();
             m_LabelPostOwnerInfo = new Label();
             this.AutoSize = true;
-            FormMain.BackgroundChanged += (Color i_Color) => BackColor = i_Color;
+            BackgroundChange.BackgroundChanged += (Color color) => BackColor = color;
 
             InitializeComponent();
         }

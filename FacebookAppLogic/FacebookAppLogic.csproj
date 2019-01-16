@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="AdvancedSearcher.cs" />
     <Compile Include="AppSettings.cs" />
+    <Compile Include="BackgroundChange.cs" />
     <Compile Include="FacebookPlayerFacade.cs" />
     <Compile Include="PostWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

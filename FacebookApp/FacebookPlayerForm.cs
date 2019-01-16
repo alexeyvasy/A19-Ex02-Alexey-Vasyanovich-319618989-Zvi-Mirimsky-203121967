@@ -19,7 +19,7 @@ namespace FacebookApp
         {
             InitializeComponent();
 
-            FormMain.BackgroundChanged += (Color i_Color) => BackColor = i_Color;
+            BackgroundChange.BackgroundChanged += (Color color) => BackColor = color;
             allSongsListBox.DisplayMember = "SongName";
             playListBox.DisplayMember = "SongName";
         }

@@ -19,7 +19,6 @@ namespace FacebookApp
         private LoginResult m_LoginResult;
         private AppSettings m_AppSettings;
         private Action m_LogOut = null;     // required for Facebook Logout method
-        static public event Action<Color> BackgroundChanged;
 
         public FormMain()
         {
@@ -27,6 +26,8 @@ namespace FacebookApp
             m_AppSettings = AppSettings.LoadFromFile();
             this.Size = m_AppSettings.m_LastWindowSize;
             this.Location = m_AppSettings.m_LastWindowLocation;
+            BackgroundChange.BackgroundChanged += (Color color) => BackColor = color;
+
 
             if (m_AppSettings.m_RememberUser && !string.IsNullOrEmpty(m_AppSettings.m_LastAccessToken))
             {
@@ -99,7 +100,7 @@ namespace FacebookApp
         {
             FormAdvancedSearcher newSearchForm = new FormAdvancedSearcher(m_LoggedInUser);
 
-            BackgroundChanged.Invoke(BackColor);
+            BackgroundChange.Update(BackColor);
             newSearchForm.Show();
         }
 
@@ -107,7 +108,7 @@ namespace FacebookApp
         {
             FacebookPlayerForm facebookPlayerForm = new FacebookPlayerForm();
 
-            BackgroundChanged.Invoke(BackColor);
+            BackgroundChange.Update(BackColor);
             facebookPlayerForm.Show();
             facebookPlayerForm.LoadSongs(m_LoggedInUser);
         }
@@ -199,12 +200,7 @@ namespace FacebookApp
             ColorDialog colorDialog = new ColorDialog();
 
             colorDialog.ShowDialog();
-            BackColor = colorDialog.Color;
-
-            if (BackgroundChanged != null)
-            {
-                BackgroundChanged.Invoke(colorDialog.Color);
-            }
+            BackgroundChange.Update(colorDialog.Color);
         }
     }
 }
