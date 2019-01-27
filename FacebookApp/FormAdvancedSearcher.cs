@@ -117,9 +117,17 @@ userAge);
 
             m_NewSearch = new AdvancedSearcher(m_LoggedInUser, searchParameters);
 
+            if (NormalKeySearchButton.Checked == true)
+            {
+                m_NewSearch.KeyPhraseSearcher = keyPhraseSearchNormalStrategy;
+            }
+            else
+            {
+                m_NewSearch.KeyPhraseSearcher = keyPhraseSearchAdvancedlStrategy;
+            }
+
             try
             {
-                m_NewSearch.keyPhraseSearcher = keyPhraseSearchNormalStrategy;
                 m_NewSearch.Search();
                 showSearchResults();
             }
@@ -131,8 +139,26 @@ userAge);
 
         private bool keyPhraseSearchNormalStrategy(string i_PostText, string i_KeyPhrase)
         {
-            return i_PostText.Contains(i_KeyPhrase); 
+            return i_PostText.Contains(i_KeyPhrase);
         }
+
+        private bool keyPhraseSearchAdvancedlStrategy(string i_PostText, string i_KeyPhrase)
+        {
+            bool exists = false;
+            string[] words = i_KeyPhrase.Split(' ');
+
+            foreach (string word in words)
+            {
+                if (i_PostText.Contains(word))
+                {
+                    exists = true;
+                    break;
+                }
+            }
+
+            return exists;
+        }
+
 
         private void checkBoxGroups_CheckedChanged(object sender, EventArgs e)
         {

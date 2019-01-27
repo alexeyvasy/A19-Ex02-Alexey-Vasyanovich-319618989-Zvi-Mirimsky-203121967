@@ -15,8 +15,6 @@ namespace FacebookAppLogic
 
     public class AdvancedSearcher
     {
-        public Func<string, string, bool> keyPhraseSearcher;
-
         public static int UserAge(User i_User)
         {
             int age = 0;
@@ -44,7 +42,9 @@ namespace FacebookAppLogic
         public User LoggedInUser { get; private set; }
 
         public List<PostWrapper> SearchResults { get; private set; }
-        
+
+        public Func<string, string, bool> KeyPhraseSearcher { private get; set; }
+
         public AdvancedSearcher(User i_LoggedInUser, SearchParameters i_SearchParameters)
         {
             LoggedInUser = i_LoggedInUser;
@@ -131,7 +131,7 @@ namespace FacebookAppLogic
                 {
                     if (post.Message != null)
                     {
-                        if (keyPhraseSearcher.Invoke(post.Message, SearchParameters.KeyPhrase))         //  post.Message.Contains(SearchParameters.KeyPhrase)
+                        if (KeyPhraseSearcher.Invoke(post.Message, SearchParameters.KeyPhrase))         //  post.Message.Contains(SearchParameters.KeyPhrase)
                         {
                             SearchResults.Add(myPost);
                             postBeenAdded = true;
@@ -140,7 +140,7 @@ namespace FacebookAppLogic
 
                     if (post.Name != null)
                     {
-                        if (keyPhraseSearcher.Invoke(post.Name, SearchParameters.KeyPhrase) && !postBeenAdded)
+                        if (KeyPhraseSearcher.Invoke(post.Name, SearchParameters.KeyPhrase) && !postBeenAdded)
                         {
                             SearchResults.Add(myPost);
                             postBeenAdded = true;
@@ -149,7 +149,7 @@ namespace FacebookAppLogic
 
                     if (post.Description != null)
                     {
-                        if (keyPhraseSearcher.Invoke(post.Description, SearchParameters.KeyPhrase) && !postBeenAdded)
+                        if (KeyPhraseSearcher.Invoke(post.Description, SearchParameters.KeyPhrase) && !postBeenAdded)
                         {
                             SearchResults.Add(myPost);
                             postBeenAdded = true;

@@ -45,6 +45,8 @@
             this.numericUpDownEndAge = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownStartAge = new System.Windows.Forms.NumericUpDown();
             this.checkedListBoxUserGroups = new System.Windows.Forms.CheckedListBox();
+            this.NormalKeySearchButton = new System.Windows.Forms.RadioButton();
+            this.AnyWordKeySearchButton = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -215,12 +217,37 @@
             this.checkedListBoxUserGroups.TabIndex = 13;
             this.checkedListBoxUserGroups.Visible = false;
             // 
+            // NormalKeySearchButton
+            // 
+            this.NormalKeySearchButton.AutoSize = true;
+            this.NormalKeySearchButton.Checked = true;
+            this.NormalKeySearchButton.Location = new System.Drawing.Point(36, 552);
+            this.NormalKeySearchButton.Name = "NormalKeySearchButton";
+            this.NormalKeySearchButton.Size = new System.Drawing.Size(169, 24);
+            this.NormalKeySearchButton.TabIndex = 14;
+            this.NormalKeySearchButton.TabStop = true;
+            this.NormalKeySearchButton.Text = "Normal Key Search";
+            this.NormalKeySearchButton.UseVisualStyleBackColor = true;
+            // 
+            // AnyWordKeySearchButton
+            // 
+            this.AnyWordKeySearchButton.AutoSize = true;
+            this.AnyWordKeySearchButton.Location = new System.Drawing.Point(36, 583);
+            this.AnyWordKeySearchButton.Name = "AnyWordKeySearchButton";
+            this.AnyWordKeySearchButton.Size = new System.Drawing.Size(260, 24);
+            this.AnyWordKeySearchButton.TabIndex = 15;
+            this.AnyWordKeySearchButton.TabStop = true;
+            this.AnyWordKeySearchButton.Text = "Any Word of Phrase Key Search";
+            this.AnyWordKeySearchButton.UseVisualStyleBackColor = true;
+            // 
             // FormAdvancedSearcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(768, 786);
+            this.Controls.Add(this.AnyWordKeySearchButton);
+            this.Controls.Add(this.NormalKeySearchButton);
             this.Controls.Add(this.checkedListBoxUserGroups);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label1);
@@ -260,5 +287,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDownEndAge;
         private System.Windows.Forms.NumericUpDown numericUpDownStartAge;
         private System.Windows.Forms.CheckedListBox checkedListBoxUserGroups;
+        private System.Windows.Forms.RadioButton NormalKeySearchButton;
+        private System.Windows.Forms.RadioButton AnyWordKeySearchButton;
     }
 }
